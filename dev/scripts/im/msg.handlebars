@@ -1,0 +1,35 @@
+{{#is type "===" "more"}}
+<li class="chat-msg-more text-center"><a href="javascript:void(0);" node-type="more-msgs">{{map i18n.msgType 4}}</a></li>
+{{/is}}
+{{#each data}}
+	{{#is baseMessage.creatorType "not" 2}}
+	<li data-id="{{baseMessage.openIdEx.openId}}" {{#is ../../myOpenId "not" baseMessage.openIdEx.openId}}class="clearfix his-chart"{{else}}class="clearfix myself-chart"{{/is}}>
+		<a href="javascript:void(0);" class="user-img">
+			<img class="media-object cmu-img" src="{{map ../../profile baseMessage.openIdEx.openId 'avatar'}}" alt="">
+		</a>
+		<p class="msg-wrap">
+			<em class="msg-arrow"></em>
+			<span class="chartmsg">
+				{{#is baseMessage.content.contentType "===" 1}}
+				
+		    	{{face baseMessage.content.textContent.text}}
+		    	{{/is}}
+		    	{{#is baseMessage.content.contentType "===" 2}}
+		    	<img src="{{baseMessage.content.photoContent.mediaId}}" style="max-width:100%;">
+		    	{{/is}}
+		    	{{#is baseMessage.content.contentType "===" 3}}
+		    	{{map ../../../i18n.msgType 1}}
+		    	{{/is}}
+		    	{{#is baseMessage.content.contentType "===" 4}}
+		    	{{map ../../../i18n.msgType 2}}
+		    	{{/is}}
+		    	{{#is baseMessage.content.contentType "===" 102}}
+		    	{{map ../../../i18n.msgType 3}}
+		    	{{/is}}
+			</span>
+		</p>
+	</li>
+	{{else}}
+	<li class="chat-tips text-center">{{baseMessage.content.textContent.text}}</li>
+	{{/is}}
+{{/each}}
