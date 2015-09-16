@@ -91,6 +91,20 @@ define(function(require, exports, module) {
 		            	return i18n.implace('密码必须大于{0}位',arr)
 		            }
 		        }
+			},
+			profiles:{
+				required:function(arr){
+	            	return i18n.implace('请{0}{1}',arr)
+	            },
+	            minlength:function(arr){
+	            	return i18n.implace('{0}必须大于{1}位',arr)
+	            },
+	            maxlength:function(arr){
+	            	return i18n.implace('{0}必须小于{1}位',arr)
+	            },
+	            noval:function(arr){
+	            	return i18n.implace('{0}格式不正确',arr)
+	            }
 			}
 		},
 		delConfirm:"确定删除？",

@@ -1,13 +1,13 @@
 # web-grunt-seajs
-### dev 打包合并
+### dev 
 
 	grunt --config dev/lib/config/config.js --isBeautify
 	
-### build 打包合并压缩
+### build 
 
 	grunt --config dev/lib/config/config.js
 
-### test 样式测试合并
+### test 
 
 	grunt --config dev/lib/config/config.js test
 

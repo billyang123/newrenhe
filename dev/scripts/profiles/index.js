@@ -32,6 +32,13 @@ define(function(require, exports, module) {
 		},
 		initialize:function(){
 			var self = this;
+			$('.js-year').each(function(index,item){
+				var vm = $(item);
+				var tv = vm.val().match(/^\d+/);
+				if(tv){
+					vm.val(tv[0])
+				}
+			})
 			$('.js-area-dist').cxSelect({ 
 			  url: Aid.address,
 			  selects: ['province', 'city', 'area'], 
