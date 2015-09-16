@@ -137,6 +137,33 @@ define(function(require, exports, module) {
 			})
 			return data;
 		},
+		getformHorizontal:function(ele){
+			var content = [];
+			var fterArr = [
+			    '[type="hidden"][name]',
+			    'select[name]',
+			    '[type="text"][name]:enabled',
+			    'textarea',
+			    '[type="radio"][name]:checked'
+			]
+			ele.find('.form-horizontal').each(function(index,item){
+				var data = {};
+				$(item).find(fterArr.join(',')).each(function(idx,it){
+					var k = $(it).attr("name");
+					var v = $(it).val();
+					if(data[k]){
+						if(!$.isArray(data[k])){
+							data[k] = [data[k]];
+						};
+						data[k].push(v);
+					}else{
+						data[k] = v;
+					}
+				})
+				content.push(data);
+			})
+			return {content:content};
+		},
 		addPanel:function(e){
 			var self = this;
 			var $this = $(e.currentTarget);
@@ -164,7 +191,9 @@ define(function(require, exports, module) {
 			var Panel = $this.closest(".panel").data("target").split(',');
 			var $editPanel = $(Panel[0])
 			var url = $editPanel.data("url");
-			var data = this.getFormData($editPanel);
+			var getDataType = $editPanel.data("type")
+			
+			var data = this[getDataType]($editPanel)
 			var dbType = $this.data("dbtype");
 			$.ajax({
 				url:url,
